@@ -55,6 +55,10 @@ Two records test that clean data passes. Case 1003 has `denied` in lowercase and
 
 Processing targets in the sample (SNAP 30 days, TANF and Medicaid 45 days) are set in `SLA_TARGETS` at the top of `reconcile.py`. Edit them to match the rules for your program.
 
+## 🔀 Data Mapping
+
+See [`DATA_MAPPING.md`](DATA_MAPPING.md) for how each source field maps to the database, the cleaning rules applied on load, which checks use each field, and two mapping gaps found during review (received date and worker are not compared across sources).
+
 ## 🧰 Tools Used
 
 - Python 3 (pandas, openpyxl, sqlite3), AI-assisted development
@@ -71,6 +75,7 @@ SQLite runs inside Python with no database server to install. The queries use st
 - `data/system_export.csv` - Sample system of record export
 - `data/team_tracker.xlsx` - Sample team tracker with intentional discrepancies
 - `output/reconciliation_report.xlsx` - Report generated from the sample data
+- `DATA_MAPPING.md` - Source-to-target field mapping, transformation rules, field usage by check, and mapping gaps
 
 ## ▶ How to Use It
 
