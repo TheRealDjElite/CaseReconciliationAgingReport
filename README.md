@@ -59,6 +59,10 @@ Processing targets in the sample (SNAP 30 days, TANF and Medicaid 45 days) are s
 
 See [`DATA_MAPPING.md`](DATA_MAPPING.md) for how each source field maps to the database, the cleaning rules applied on load, which checks use each field, and two mapping gaps found during review (received date and worker are not compared across sources).
 
+## 🧭 Process Map
+
+See [`PROCESS_MAP.md`](PROCESS_MAP.md) for current state and future state swimlane diagrams, the pain points in the manual process, and a step-by-step comparison of both.
+
 ## 🧰 Tools Used
 
 - Python 3 (pandas, openpyxl, sqlite3), AI-assisted development
@@ -76,6 +80,7 @@ SQLite runs inside Python with no database server to install. The queries use st
 - `data/team_tracker.xlsx` - Sample team tracker with intentional discrepancies
 - `output/reconciliation_report.xlsx` - Report generated from the sample data
 - `DATA_MAPPING.md` - Source-to-target field mapping, transformation rules, field usage by check, and mapping gaps
+- `PROCESS_MAP.md` - Current and future state process maps, pain points, and comparison
 
 ## ▶ How to Use It
 
