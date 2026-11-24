@@ -37,7 +37,7 @@ The Open Case Aging sheet highlights overdue cases in red and cases due within 7
 
 ## 🧪 Sample Data
 
-`system_export.csv` holds 30 case records. `team_tracker.xlsx` holds 30 tracker rows with intentional discrepancies:
+[`system_export.csv`](data/system_export.csv) holds 30 case records. [`team_tracker.xlsx`](data/team_tracker.xlsx) holds 30 tracker rows with intentional discrepancies:
 
 | Planted issue | Example | Caught by |
 |---|---|---|
@@ -53,7 +53,7 @@ The Open Case Aging sheet highlights overdue cases in red and cases due within 7
 
 Two records test that clean data passes. Case 1003 has `denied` in lowercase and case 1010 has extra spaces in the name. Neither is flagged.
 
-Processing targets in the sample (SNAP 30 days, TANF and Medicaid 45 days) are set in `SLA_TARGETS` at the top of `reconcile.py`. Edit them to match the rules for your program.
+Processing targets in the sample (SNAP 30 days, TANF and Medicaid 45 days) are set in `SLA_TARGETS` at the top of [`reconcile.py`](reconcile.py). Edit them to match the rules for your program.
 
 ## 🔀 Data Mapping
 
@@ -73,24 +73,25 @@ SQLite runs inside Python with no database server to install. The queries use st
 
 ## 📁 File Overview
 
-- `reconcile.py` - Loads and cleans both files, builds the database, runs the checks, writes the report
-- `sql/schema.sql` - Creates the tables for system cases, tracker cases, processing targets, and load issues
-- `sql/checks/` - One `.sql` file per check. Line 1 is the sheet name, line 2 is the Summary description
-- `data/system_export.csv` - Sample system of record export
-- `data/team_tracker.xlsx` - Sample team tracker with intentional discrepancies
-- `output/reconciliation_report.xlsx` - Report generated from the sample data
-- `DATA_MAPPING.md` - Source-to-target field mapping, transformation rules, field usage by check, and mapping gaps
-- `PROCESS_MAP.md` - Current and future state process maps, pain points, and comparison
+- [`reconcile.py`](reconcile.py) - Loads and cleans both files, builds the database, runs the checks, writes the report
+- [`requirements.txt`](requirements.txt) - Python packages needed to run the tool
+- [`sql/schema.sql`](sql/schema.sql) - Creates the tables for system cases, tracker cases, processing targets, and load issues
+- [`sql/checks/`](sql/checks) - One `.sql` file per check. Line 1 is the sheet name, line 2 is the Summary description
+- [`data/system_export.csv`](data/system_export.csv) - Sample system of record export
+- [`data/team_tracker.xlsx`](data/team_tracker.xlsx) - Sample team tracker with intentional discrepancies
+- [`output/reconciliation_report.xlsx`](output/reconciliation_report.xlsx) - Report generated from the sample data
+- [`DATA_MAPPING.md`](DATA_MAPPING.md) - Source-to-target field mapping, transformation rules, field usage by check, and mapping gaps
+- [`PROCESS_MAP.md`](PROCESS_MAP.md) - Current and future state process maps, pain points, and comparison
 
 ## ▶ How to Use It
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Run `python reconcile.py`
-3. Open `output/reconciliation_report.xlsx` and start on the Summary sheet
+1. Install the packages in [`requirements.txt`](requirements.txt): `pip install -r requirements.txt`
+2. Run [`reconcile.py`](reconcile.py): `python reconcile.py`
+3. Open [`output/reconciliation_report.xlsx`](output/reconciliation_report.xlsx) and start on the Summary sheet
 
-To use your own files, replace the two files in `data/` or change `SYSTEM_FILE` and `TRACKER_FILE` in the script. If your tracker uses different column headers, update `TRACKER_COLUMNS`. Set `REPORT_DATE = date.today()` for live aging.
+To use your own files, replace the two files in [`data/`](data) or change `SYSTEM_FILE` and `TRACKER_FILE` in the script. If your tracker uses different column headers, update `TRACKER_COLUMNS`. Set `REPORT_DATE = date.today()` for live aging.
 
-To add a check, drop a new numbered `.sql` file in `sql/checks/`. It shows up as a new sheet and a new Summary row on the next run.
+To add a check, drop a new numbered `.sql` file in [`sql/checks/`](sql/checks). It shows up as a new sheet and a new Summary row on the next run.
 
 ## 📌 Purpose
 
